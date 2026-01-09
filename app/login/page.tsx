@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import "./login.css";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState<string>("");
-  const [senha, setSenha] = useState<string>("");
-  const [erro, setErro] = useState<string>("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -19,29 +18,41 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="login-container">
-      <form className="login-box" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+    <div className="container vh-100 d-flex justify-content-center align-items-center">
+      <form
+        className="card p-4 shadow"
+        style={{ width: "100%", maxWidth: 360 }}
+        onSubmit={handleSubmit}
+      >
+        <h3 className="text-center mb-3">Login</h3>
 
-        {erro && <p className="error">{erro}</p>}
+        {erro && <div className="alert alert-danger">{erro}</div>}
 
-        <input
-          type="email"
-          placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <div className="mb-3">
+          <label className="form-label">E-mail</label>
+          <input
+            type="email"
+            className="form-control"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          required
-        />
+        <div className="mb-3">
+          <label className="form-label">Senha</label>
+          <input
+            type="password"
+            className="form-control"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
+        </div>
 
-        <button type="submit">Entrar</button>
+        <button className="btn btn-primary w-100" type="submit">
+          Entrar
+        </button>
       </form>
     </div>
   );
